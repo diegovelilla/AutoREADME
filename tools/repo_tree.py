@@ -8,9 +8,9 @@ def clone_repo(repo_url):
     subprocess.run(command, check=True)
 
 
-def remove_repo(repo_name):
+def remove_file(file_name):
     # Prepare and run the rm -r command
-    command = ["rm", repo_name, "-rf"]
+    command = ["rm", file_name, "-rf"]
     subprocess.run(command, check=True)
 
 
@@ -33,3 +33,4 @@ def generate_tree(directory, prefix=""):
                 tree += generate_tree(path, prefix + extension)
 
     return tree
+
