@@ -1,4 +1,4 @@
-from tools.repo_tree import generate_tree, clone_repo, remove_repo
+from tools.repo_tree import generate_tree, clone_repo, remove_file
 from models.llama_3_1_70B import llama_3_1_70B
 from prompts.readme_template import readme_template
 import json
@@ -29,7 +29,7 @@ def initialize(repo_url):
 if __name__ == "__main__":
 
     repo_name, repo_username, system_prompt_parser, system_prompt_summarizer, system_prompt_writer, tree = initialize(
-        repo_url="https://github.com/diegovelilla/reddit-nemesis.git")
+        repo_url="https://github.com/diegovelilla/AutoREADME.git")
     print(tree)
     first_prompt = {"tree": tree, "files-already-seen": []}
     model = llama_3_1_70B()
@@ -63,4 +63,6 @@ if __name__ == "__main__":
     print("README.md generated!")
     with open("propREADME.md", "w") as file:
         file.write(writer_response)
-    remove_repo(repo_name=repo_name)
+    remove_file(file_name=repo_name)
+    remove_file(file_name="logs.txt")
+
