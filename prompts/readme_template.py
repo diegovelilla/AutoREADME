@@ -1,5 +1,5 @@
 readme_template = """
-# <COMPLETE WITH TITLE>
+# Title of the project
 
 ## Index
 1. [Overview](#overview)
@@ -12,16 +12,17 @@ readme_template = """
 ---
 
 ## Overview
-<COMPLETE WITH OVERVIEW>
+A basic summary on what the project is about.
 
 ## Features
-<COMPLETE WITH FEATURES>
+Some key bullet points of this project and what makes it a good project.
 
 ## Installation
-<COMPLETE WITH INSTALLATION>
+Step by step guide on which commands to run or files to configure in order to setup the project and have it ready to run.
+Maybe refer to a requirements.txt file or similar.
 
 ## Usage:
-<COMPLETE WITH USAGE>
+Step by step guide on how to use the project and which commands to run in order to run the main program.
 
 
 ## License
