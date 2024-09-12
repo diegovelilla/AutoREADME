@@ -33,6 +33,10 @@ And run this command:
 python3 main.py
 ```
 
+## Workflow
+
+![Workflow](http://github.com/diegovelilla/AutoREADME/workflow.png)
+
 ## License
 This project is licensed under the [MIT License](https://github.com/diegovelilla/AutoREADME/blob/main/LICENSE). See the [LICENSE](https://github.com/diegovelilla/AutoREADME/blob/main/LICENSE) file for more details.
 
