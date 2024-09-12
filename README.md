@@ -40,23 +40,32 @@ Make sure to change the following line in the config/.env file:
 GROQ_API_KEY="your_api_key_here"
 ```
 ## Usage:
-To use AutoREADME, simply substitute the URL in main.py with the URL of the wanted repo:
-
-```python
-repo_url="https://github.com/username/repo_name.git"
-```
-
-And run this command:
+To use AutoREADME, simply run the following command:
 
 ```bash
 python3 main.py
 ```
 
+Then, you be greeted with the following message:
+
+```bash
+Welcome to AutoREADME! Input the desired github repository:
+```
+
+Now just type the desired GitHub repository you want to create the README file for:
+
+```bash
+https://github.com/diegovelilla/AutoREADME.git
+```
+
+> [!Warning]  
+> When copy-pasting the url, make sure it ends in **.git**.
+
 ## Workflow
 
 ![Workflow](https://github.com/diegovelilla/AutoREADME/blob/main/media/workflow.png)
 
-In this workflow we are giving 4 different personas to the model:
+In this workflow we are giving 4 different personas to the AI model:
 - An **AI Planner**.
 - An **AI Researcher**.
 - An **AI Writer**.
