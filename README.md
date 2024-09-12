@@ -54,7 +54,7 @@ python3 main.py
 
 ## Workflow
 
-![Workflow](https://github.com/diegovelilla/AutoREADME/blob/main/workflow.png)
+![Workflow](https://github.com/diegovelilla/AutoREADME/blob/main/media/workflow.png)
 
 In this workflow we are giving 4 different personas to the model:
 - An **AI Planner**.
