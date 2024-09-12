@@ -130,7 +130,7 @@ When the file is ready, it is time to quality check it.
 Finally, the **AI Validator** checks the final file.
 
 GOAL:
-- Decide wether the final file is either correct, contains format errors or lacks information about the project.
+- Decide whether the final file is either correct, contains format errors or lacks information about the project.
 
 INPUT:
 - The empty README template.
