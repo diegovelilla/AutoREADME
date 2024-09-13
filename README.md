@@ -19,6 +19,7 @@
   - [AI Summarizer](#ai-summarizer)
   - [AI Writer](#ai-writer)
   - [AI Validator](#ai-validator)
+- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
@@ -152,6 +153,38 @@ OUTPUT:
   - Information -> Lacks information about the project and must be sent back to the **AI Planner**.
 
 To prevent infinite loops, we can set a MAX_ITERATIONS variable to the number of maximum iterations we want our workflow to run.
+
+## Contributing
+
+We welcome contributions of all kinds! Whether you're fixing bugs, improving documentation, or suggesting new features, your help is appreciated.
+
+To contribute to this project, follow these steps:
+
+### 1. Fork the repository: 
+
+Click on the "Fork" button at the top of the repository page.
+
+### 2. Clone your fork: 
+  ```bash
+  git clone https://github.com/your-username/project-name.git
+  ```
+### 3. Make the changes:
+
+Ensure to document and explain the change.
+
+### 4. Push the changes:
+```bash
+  git push origin you-branch-name
+  ```
+
+To check-out in what branch your currently working: 
+  ```bash
+  git branch
+  ```
+
+### 5. Submit a Pull Request:
+
+Go to the original repository and open a pull request so I can add the changes!
 
 ## License
 This project is licensed under the [MIT License](https://github.com/diegovelilla/AutoREADME/blob/main/LICENSE). See the [LICENSE](https://github.com/diegovelilla/AutoREADME/blob/main/LICENSE) file for more details.
