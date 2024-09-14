@@ -1,5 +1,9 @@
 # AutoREADME: Automatize Project Documentation
 
+<p align="center">
+  <img src="https://github.com/yurijserrano/Github-Profile-Readme-Logos/tree/master/programming%20languages/c-logo.png" alt="MASK Logo" width="50" height="50">
+</p>
+
 > [!Note]  
 > I've put a lot of time and effort on this project because I believe it can help lots of developers.
 >

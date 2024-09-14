@@ -2,6 +2,7 @@ from tools.utils import list_dirs, clone_repo, remove_file
 from models.llama_3_1_70B import llama_3_1_70B
 from prompts.readme_template import readme_template
 import json
+import re
 
 MAX_ITERATIONS = 2
 # use this to check file length before uploading it to the model, if not, truncate it
@@ -12,9 +13,13 @@ def planner(model, dirs, known_info, already_read, system_prompt_planner):
     planner_prompt = {"files": dirs, "already-seen": already_read,
                       "gathered-info": known_info}
     answer_planner = model.answer(
-        system_prompt=system_prompt_planner, prompt=str(planner_prompt), json=True)
+        system_prompt=system_prompt_planner, prompt=str(planner_prompt), json=False)
+    print(answer_planner)
+    json_section = re.search(
+        r'<output>\s*(.*?)\s*</output>', answer_planner, re.DOTALL)
+    answer_planner = json_section.group(1)
     answer_planner = json.loads(answer_planner)
-    already_read = answer_planner["already-read"]
+    already_read.extend(answer_planner)
     return answer_planner, known_info, already_read
 
 
@@ -23,30 +28,40 @@ def summarizer(model, files, known_info, system_prompt_summarizer):
         with open(file_to_check, "r") as file:
             file_contents = file.read()
         answer_summarizer = model.answer(
-            system_prompt=system_prompt_summarizer, prompt=f"Here's what we know now: {known_info}\n\nHere's the file to check: {file_to_check}\n" + file_contents, json=True)
-
+            system_prompt=system_prompt_summarizer, prompt=f"Here's what we know now: {known_info}\n\nHere's the file to check: {file_to_check}\n" + file_contents, json=False)
+        json_section = re.search(
+            r'<output>\s*(.*?)\s*</output>', answer_summarizer, re.DOTALL)
+        print(answer_summarizer)
+        answer_summarizer = json_section.group(1)
         print(f"The answer from the summarizer: {answer_summarizer}")
-        answer_summarizer = json.loads(answer_summarizer)
-        known_info = answer_summarizer["known-info"]
-    return known_info
+        known_info = answer_summarizer
+    return answer_summarizer
 
 
 def writer(model, known_info, system_prompt_writer, readme_template):
-    writer_response = model.answer(
+    answer_writer = model.answer(
         system_prompt=system_prompt_writer + "\n\n" + readme_template,
         prompt=known_info,
         json=False)
-    return writer_response
+    print(answer_writer)
+    json_section = re.search(
+        r'<output>\s*(.*?)\s*</output>', answer_writer, re.DOTALL)
+    answer_writer = json_section.group(1)
+    return answer_writer
 
 
 def validator(model, writer_response, system_prompt_validator, readme_template):
     validator_response = model.answer(
         system_prompt=system_prompt_validator + "\n\n" + readme_template,
         prompt=writer_response,
-        json=True
+        json=False
     )
-    validator_response = json.loads(validator_response)
-    return validator_response["Status"]
+    json_section = re.search(
+        r'<output>\s*(.*?)\s*</output>', validator_response, re.DOTALL)
+    print(validator_response)
+    print(json_section)
+    validator_response = json_section.group(1)
+    return validator_response
 
 
 def initialization(repo_url):
@@ -90,22 +105,26 @@ if __name__ == "__main__":
     skip_summarizer = False
     while (not ended and iteration < MAX_ITERATIONS):
         if (not skip_planner):
+            print("Starting AI Planner...")
             answer_planner, known_info, already_read = planner(model=model, dirs=dirs,
                                                                known_info=known_info, already_read=already_read,
                                                                system_prompt_planner=system_prompt_planner)
-            print(f"Planner finished!\n\n {answer_planner['files']}")
+            print(f"Planner finished!\n\n{answer_planner}")
         skip_planner = False
 
         if (not skip_summarizer):
+            print("Starting AI Summarizer...")
             known_info = summarizer(
-                model=model, files=answer_planner["files"], known_info=known_info, system_prompt_summarizer=system_prompt_summarizer)
+                model=model, files=answer_planner, known_info=known_info, system_prompt_summarizer=system_prompt_summarizer)
             print(f"Summarizer finished!\n\n {known_info}")
         skip_summarizer = False
 
+        print("Starting AI Writer...")
         writer_response = writer(model=model, known_info=known_info,
                                  system_prompt_writer=system_prompt_writer, readme_template=readme_template)
-        print(f"Writer finished!\n\n{writer_response}")
+        # print(f"Writer finished!\n\n{writer_response}")
 
+        print("Starting AI Validator...")
         validator_response = validator(model=model, writer_response=writer_response,
                                        system_prompt_validator=system_prompt_validator, readme_template=readme_template)
         print(f"Validator finished with verdict: {validator_response}")

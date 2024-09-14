@@ -1,7 +1,13 @@
 readme_template = """
 # Title of the project
 
-## Index
+Insert here a 1 or 2 sentence summary of the project.
+
+For every programming languages in the project, add it after the **i=** separated by comas. 
+Align it accordingly to the number of languages used so it looks good.
+<img src="https://skillicons.dev/icons?i=language1,language2,language3" />
+
+##Table of contents
 Index containing an Overview, Installation, Usage, License and Contact as a bare minimum. 
 If more sections are needed, add them here.
 
