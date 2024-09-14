@@ -168,8 +168,8 @@ To contribute to this project, follow these steps:
 
 Click on the "Fork" button at the top of the repository page.
 
-### 2. Clone your fork: 
-  ```bash
+### 2. Clone your fork:
+```bash
   git clone https://github.com/your-username/project-name.git
   ```
 ### 3. Make the changes:
@@ -182,7 +182,7 @@ Ensure to document and explain the change.
   ```
 
 To check-out in what branch your currently working: 
-  ```bash
+```bash
   git branch
   ```
 
