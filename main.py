@@ -56,6 +56,7 @@ def validator(model, writer_response, system_prompt_validator, readme_template):
         prompt=writer_response,
         json=False
     )
+    print(validator_response)
     json_section = re.search(
         r'<output>\s*(.*?)\s*</output>', validator_response, re.DOTALL)
     validator_response = json_section.group(1)
@@ -108,7 +109,7 @@ if __name__ == "__main__":
             answer_planner, known_info, already_read = planner(model=model, dirs=dirs,
                                                                known_info=known_info, already_read=already_read,
                                                                system_prompt_planner=system_prompt_planner)
-            print(colored(f"Planner finished!", "green"))
+            print(colored("Planner finished!", "green"))
         skip_planner = False
 
         if (not skip_summarizer):
@@ -121,23 +122,23 @@ if __name__ == "__main__":
         print(colored("\nStarting AI Writer...", "green"))
         writer_response = writer(model=model, known_info=known_info,
                                  system_prompt_writer=system_prompt_writer, readme_template=readme_template)
-        print(colored(f"Writer finished!", "green"))
+        print(colored("Writer finished!", "green"))
 
         print(colored("\nStarting AI Validator...", "green"))
         validator_response = validator(model=model, writer_response=writer_response,
                                        system_prompt_validator=system_prompt_validator, readme_template=readme_template)
         print(
-            colored(f"Validator finished!", "green"))
+            colored("Validator finished!", "green"))
 
         if (validator_response == "Correct"):
             ended = True
         elif (validator_response == "Format"):
             skip_planner = True
             skip_summarizer = True
-        elif (validator_response == "Information"):
-            continue
-        iteration += 1
-
+        iteration = iteration + 1
+    if iteration == MAX_ITERATIONS:
+        print(
+            colored("Ended due to excess of iterations.", "green"))
     with open("myREADME.md", "w") as file:
         file.write(writer_response)
     remove_file(file_name=repo_name)
