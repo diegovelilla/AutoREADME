@@ -1,9 +1,5 @@
 # AutoREADME: Automatize Project Documentation
 
-<p align="center">
-  <img src="https://github.com/yurijserrano/Github-Profile-Readme-Logos/tree/master/programming%20languages/c-logo.png" alt="MASK Logo" width="50" height="50">
-</p>
-
 > [!Note]  
 > I've put a lot of time and effort on this project because I believe it can help lots of developers.
 >
@@ -23,6 +19,7 @@
   - [AI Summarizer](#ai-summarizer)
   - [AI Writer](#ai-writer)
   - [AI Validator](#ai-validator)
+- [Zero-Shot Chain of Reasoning](#zero-shot-chain-of-thought)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -40,10 +37,11 @@ git clone https://github.com/diegovelilla/AutoREADME.git
 cd AutoREADME
 pip install -r requirements.txt
 ```
-Make sure to change the following line in the config/.env file:
+Make sure to change the following line with your own Groq API key in the config/.env file:
 ```
 GROQ_API_KEY="your_api_key_here"
 ```
+
 ## Usage:
 To use AutoREADME, simply run the following command:
 
@@ -158,9 +156,56 @@ OUTPUT:
 
 To prevent infinite loops, we can set a MAX_ITERATIONS variable to the number of maximum iterations we want our workflow to run.
 
+## Zero-Shot Chain of Thought
+
+To improve the quality of the model outputs and reasoning, Zero-Shot Chain of Thought is implemented in the prompting. However this might get changed into usual guided Chain of Thought.
+
+Here's an example of a piece of the **AI Validator** system prompt:
+
+```
+Before generating the output, think step by step and reason everything. First, think through the necessary steps between the <thinking>...</thinking> tags, then provide the output between the <output>...</output> tags. Do not output this preamble, start outputting from here:
+
+<thinking>
+[insert here your reasoning step by step in order to accomplish the task]
+</thinking>
+<output>
+[insert the status of the inputted file]
+</output>
+```
+
+And here's an example of output produced by it:
+
+```
+<thinking>
+To assess the status of this README file, let's evaluate its completeness and formatting.
+
+The project title and summary are provided, along with the programming language used (Python). The necessary sections, including Overview, Installation, Usage, License, and Contact, are all present and well-structured.
+
+The Installation section provides step-by-step instructions, including the command to install the necessary dependencies and clone the repository.
+
+The Usage section has a clear and concise description of the available functions and their respective examples. However, two out of three examples are mentioned as hypothetical and not properly implemented.
+
+The table of contents is properly formatted and links to the corresponding sections.
+
+The License section mentions that the project is licensed under the terms in the LICENSE file, but does not specify the actual license.
+
+The Contact section provides a clear way for users to reach out to the project owner.
+
+Overall, this README file is close to being complete, but the Usage section and License section lack proper information. Also, remember to ignore the License section when checking for status as they have told us to do so.
+
+Since the formatting and most sections are correct, and there is one major missing information which is Usage, the status should be "Information" because it lacks information on 
+the implementation of the provided functions.
+</thinking>
+<output>
+Information
+</output>
+```
+
+This prompting technique really improved the generated READMEs quality by a lot. However, as said before, guiding this Chain of Thought might get even beter results. 
+
 ## Contributing
 
-We welcome contributions of all kinds! Whether you're fixing bugs, improving documentation, or suggesting new features, your help is appreciated.
+All kinds of contributions are welcomed! Whether you're fixing bugs, improving documentation, or suggesting new features, your help is appreciated.
 
 To contribute to this project, follow these steps:
 
