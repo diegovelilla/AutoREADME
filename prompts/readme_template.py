@@ -27,7 +27,7 @@ Step by step guide on how to use the project and which commands to run in order 
 
 ## License
 Complete this section with the following sentence, referring to the LICENSE file in the repository if it exists one.
-This project is licensed under the <COMPLETE WITH LICENSE>. See the [LICENSE](https://github.com/username/<COMPLETE WITH TITLE>/blob/main/LICENSE) file for more details.
+This project is licensed under the <COMPLETE WITH LICENSE NAME> license. See the [LICENSE](https://github.com/username/<COMPLETE WITH TITLE>/blob/main/LICENSE) file for more details.
 
 (if there's no info on license, state that there's no license for this project)
 

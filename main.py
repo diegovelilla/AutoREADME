@@ -1,5 +1,5 @@
 from tools.utils import list_dirs, clone_repo, remove_file
-from models.llama_3_1_70B import llama_3_1_70B
+from models.groq_model import groq_model
 from prompts.readme_template import readme_template
 import json
 import re
@@ -85,6 +85,9 @@ def initialization(repo_url):
 
 if __name__ == "__main__":
 
+    # model_name = "mixtral-8x7b-32768"
+    model_name = "llama-3.1-70b-versatile"
+
     repo_url = input(
         colored("Welcome to AutoREADME! Input the desired github repository:\n", "green"))
     repo_name, repo_username, system_prompt_planner, system_prompt_summarizer, system_prompt_writer, system_prompt_validator, dirs = initialization(
@@ -98,7 +101,7 @@ if __name__ == "__main__":
     License: [Empty]
     """
     already_read = []
-    model = llama_3_1_70B()
+    model = groq_model(model_name=model_name)
     iteration = 0
     ended = False
     skip_planner = False

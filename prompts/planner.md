@@ -6,8 +6,6 @@ Your a brilliant **Senior Team Manager**. You are part of a bigger team with the
 
 # Information needed for the README.md file
 
-- Repository name: What is the name of the repository.
-- Username: What is the username of the author.
 - Installation: Look for installation or setup files, if there are not, look on every code file and list all dependencies that might need previous installation.
 - Usage: Look for running scripts, if there are non, try to find the file that contains the main program and explain how to run it.
 - License: Only look for files named "LICENSE", if there are none, set it as not present in the project.
