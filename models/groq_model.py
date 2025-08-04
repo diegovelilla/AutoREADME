@@ -6,12 +6,12 @@ CONFIG = dotenv_values("config/.env")
 
 class groq_model:
 
-    def __init__(self, model_name):
+    def __init__(self):
         """
-        Initializes the llama-3.1-70B with the given parameters.
+        Initializes the model from .env with the given parameters.
         """
         self.client = Groq(api_key=CONFIG["GROQ_API_KEY"])
-        self.model_name = model_name
+        self.model_name = CONFIG["MODEL_NAME"]
 
     def answer(self, system_prompt, prompt, json):
         """

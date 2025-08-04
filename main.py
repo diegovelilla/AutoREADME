@@ -86,7 +86,7 @@ def initialization(repo_url):
 if __name__ == "__main__":
 
     # model_name = "mixtral-8x7b-32768"
-    model_name = "llama-3.1-70b-versatile"
+    # model_name = "llama-3.1-70b-versatile"
 
     repo_url = input(
         colored("Welcome to AutoREADME! Input the desired github repository:\n", "green"))
@@ -101,7 +101,8 @@ if __name__ == "__main__":
     License: [Empty]
     """
     already_read = []
-    model = groq_model(model_name=model_name)
+    # model = groq_model(model_name=model_name)
+    model = groq_model()
     iteration = 0
     ended = False
     skip_planner = False

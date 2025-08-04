@@ -33,13 +33,14 @@ AutoREADME is an AI powered tool that generates a very definitive version of a R
 ## Installation
 To install AutoREADME and its dependencies, run the following commands:
 ```bash
-git clone https://github.com/diegovelilla/AutoREADME.git
+git clone https://github.com/userNanni/AutoREADME.git
 cd AutoREADME
 pip install -r requirements.txt
 ```
 Make sure to change the following line with your own Groq API key in the config/.env file:
 ```
 GROQ_API_KEY="your_api_key_here"
+MODEL_NAME="your_model"
 ```
 
 ## Usage:
